@@ -10,7 +10,7 @@ fn main() {
     let mut cfg = ctest::TestGenerator::new();
     let target = env::var("TARGET").unwrap();
 
-    if let Ok(out) = env::var("DEP_OPENSSL_INCLUDE") {
+    if let Ok(out) = env::var("DEP_REAL_OPENSSL_INCLUDE") {
         cfg.include(&out);
     }
 
@@ -29,10 +29,10 @@ fn main() {
         cfg.define("WIN32_LEAN_AND_MEAN", None);
     }
 
-    let openssl_version = env::var("DEP_OPENSSL_VERSION_NUMBER")
+    let openssl_version = env::var("DEP_REAL_OPENSSL_VERSION_NUMBER")
         .ok()
         .map(|v| u64::from_str_radix(&v, 16).unwrap());
-    let libressl_version = env::var("DEP_OPENSSL_LIBRESSL_VERSION_NUMBER")
+    let libressl_version = env::var("DEP_REAL_OPENSSL_LIBRESSL_VERSION_NUMBER")
         .ok()
         .map(|v| u64::from_str_radix(&v, 16).unwrap());
 
@@ -42,7 +42,7 @@ fn main() {
         cfg.cfg(c, None);
     }
 
-    if let Ok(vars) = env::var("DEP_OPENSSL_CONF") {
+    if let Ok(vars) = env::var("DEP_REAL_OPENSSL_CONF") {
         for var in vars.split(',') {
             cfg.cfg("osslconf", Some(var));
         }

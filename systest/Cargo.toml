@@ -7,7 +7,7 @@ rust-version = "1.88.0"
 
 [dependencies]
 libc = "0.2"
-openssl-sys = { path = "../openssl-sys" }
+openssl-sys = { package = "real-openssl-sys", path = "../openssl-sys" }
 
 [build-dependencies]
 ctest = "0.5"

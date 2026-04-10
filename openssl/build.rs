@@ -51,24 +51,24 @@ fn main() {
     println!("cargo:rustc-check-cfg=cfg(ossl340)");
     println!("cargo:rustc-check-cfg=cfg(ossl350)");
 
-    if env::var("DEP_OPENSSL_LIBRESSL").is_ok() {
+    if env::var("DEP_REAL_OPENSSL_LIBRESSL").is_ok() {
         println!("cargo:rustc-cfg=libressl");
     }
 
-    if env::var("DEP_OPENSSL_BORINGSSL").is_ok() {
+    if env::var("DEP_REAL_OPENSSL_BORINGSSL").is_ok() {
         println!("cargo:rustc-cfg=boringssl");
     }
 
-    if env::var("DEP_OPENSSL_AWSLC").is_ok() {
+    if env::var("DEP_REAL_OPENSSL_AWSLC").is_ok() {
         println!("cargo:rustc-cfg=awslc");
     }
 
-    if env::var("DEP_OPENSSL_AWSLC_FIPS").is_ok() {
+    if env::var("DEP_REAL_OPENSSL_AWSLC_FIPS").is_ok() {
         println!("cargo:rustc-cfg=awslc");
         println!("cargo:rustc-cfg=awslc_fips");
     }
 
-    if let Ok(v) = env::var("DEP_OPENSSL_LIBRESSL_VERSION_NUMBER") {
+    if let Ok(v) = env::var("DEP_REAL_OPENSSL_LIBRESSL_VERSION_NUMBER") {
         let version = u64::from_str_radix(&v, 16).unwrap();
 
         println!("cargo:rustc-cfg=libressl250");
@@ -114,13 +114,13 @@ fn main() {
         }
     }
 
-    if let Ok(vars) = env::var("DEP_OPENSSL_CONF") {
+    if let Ok(vars) = env::var("DEP_REAL_OPENSSL_CONF") {
         for var in vars.split(',') {
             println!("cargo:rustc-cfg=osslconf=\"{}\"", var);
         }
     }
 
-    if let Ok(version) = env::var("DEP_OPENSSL_VERSION_NUMBER") {
+    if let Ok(version) = env::var("DEP_REAL_OPENSSL_VERSION_NUMBER") {
         let version = u64::from_str_radix(&version, 16).unwrap();
         println!("cargo:rustc-cfg=ossl101");
         println!("cargo:rustc-cfg=ossl102");

@@ -1,5 +1,5 @@
 [package]
-name = "openssl-sys"
+name = "real-openssl-sys"
 version = "0.9.112"
 authors = [
     "Alex Crichton <alex@alexcrichton.com>",
@@ -10,10 +10,13 @@ description = "FFI bindings to OpenSSL"
 repository = "https://github.com/rust-openssl/rust-openssl"
 readme = "README.md"
 categories = ["cryptography", "external-ffi-bindings"]
-links = "openssl"
+links = "real_openssl"
 build = "build/main.rs"
 edition = "2021"
 rust-version = "1.70.0"
+
+[lib]
+name = "openssl_sys"
 
 [features]
 vendored = ['openssl-src']
